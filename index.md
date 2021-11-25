@@ -2,13 +2,16 @@
 
 ---
 
-### Category Name 1 
+### Python Projects
+## Education and Employment in North and South Dakota
 
-[Project 1 Title](/sample_page)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+[View full codebook here](https://colab.research.google.com/drive/1BvZ8xSWt_Q2aOr8qw_fBn3Cnp-LNrMdB?usp=sharing)
+
+[View complete report here](https://drive.google.com/file/d/1JfCSZ5H3WMqUgXcg12AdcNHIQkF2ACTC/view?usp=sharing)
+<img src="images/python_project_1.png?raw=true"/>
 
 ---
-[Project 2 Title](/pdf/sample_presentation.pdf)
+[View complete report here](https://drive.google.com/file/d/1JfCSZ5H3WMqUgXcg12AdcNHIQkF2ACTC/view?usp=sharing)
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
 ---
