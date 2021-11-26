@@ -10,7 +10,7 @@
 [View complete report here](https://drive.google.com/file/d/1JfCSZ5H3WMqUgXcg12AdcNHIQkF2ACTC/view?usp=sharing)
 <img src="images/python_project_1.png?raw=true"/>
 
-#### II. Credit Socre Modelling
+#### II. Credit Socre Modelling (incomplete)
 
 [View full codebook here]()
 
@@ -20,7 +20,7 @@
 
 ---
 
-### R Projects
+### R Projects (incomplete)
 #### WIC program
 
 [View full codebook here]()
@@ -35,7 +35,7 @@
 
 <img src="images/arcgis_projects_1.png?raw=true"/>
 
-#### ACA
+#### ACA (incomplete)
 
 [View storymap here]()
 <>
