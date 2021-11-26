@@ -20,8 +20,8 @@
 
 ---
 
-### R Projects (incomplete)
-#### WIC program
+### R Projects
+#### WIC program (incomplete)
 
 [View full codebook here]()
 
