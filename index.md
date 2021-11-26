@@ -7,7 +7,9 @@
 
 [View full codebook here](https://colab.research.google.com/drive/1BvZ8xSWt_Q2aOr8qw_fBn3Cnp-LNrMdB?usp=sharing)
 
-[View complete report here](https://drive.google.com/file/d/1JfCSZ5H3WMqUgXcg12AdcNHIQkF2ACTC/view?usp=sharing)
+[View complete report here](sallyxu0106.github.io/pdf/education_and_employment.pdf)
+
+[View deliverable here](sallyxu0106.github.io/images/python_project_1_infographic.jpg)
 <img src="images/python_project_1.png?raw=true"/>
 
 #### II. Credit Socre Modelling (incomplete)
