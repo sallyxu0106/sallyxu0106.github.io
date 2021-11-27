@@ -1,0 +1,320 @@
+---
+title: "Multiple Regression on WIC Program"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = 'D:/R/work directory')
+```
+
+```{r working directory, include=FALSE}
+setwd("D:/R/work directory")
+```
+
+#### import the dataset
+```{r pre-processing}
+good <- read.csv("good.csv")
+good <- na.omit(good[,c("CHID",
+                        "mathraw97",
+                        "AGE97",
+                        "faminc97",
+                        "bthwht",
+                        "WICpreg",
+                        "HOME97")])
+attach(good)
+```
+
+### Descriptive Statistics
+```{r data basics}
+summary(good[,c("mathraw97",
+                "AGE97",
+                "faminc97",
+                "bthwht",
+                "WICpreg",
+                "HOME97")])
+
+sd(mathraw97)
+sd(AGE97)
+sd(faminc97)
+sd(bthwht)
+sd(WICpreg)
+sd(HOME97)
+
+table(bthwht)
+table(WICpreg)
+
+cor(good[,c("AGE97",
+            "faminc97",
+            "bthwht",
+            "WICpreg",
+            "HOME97")], use="complete.obs")
+```
+
+Build the multiple regression analysis.
+```{r model1}
+good1 <- good[,c("mathraw97",
+                 "AGE97",
+                 "faminc97",
+                 "bthwht",
+                 "WICpreg")]
+model1 <- lm(mathraw97 ~ AGE97+faminc97+bthwht+WICpreg, data=good1)
+```
+
+### Diagnostics & Corrections
+#### Check for Linearity
+Check linearity with scatter plot matrix.
+```{r}
+pairs(good1, panel=panel.smooth)
+```
+
+Examine the relationship:
+```{r, include=FALSE}
+library(ggplot2)
+```
+1. AGE97 & mathraw97
+```{r}
+ggplot(good1, aes(x=AGE97, y=mathraw97)) +
+  geom_point(size=0.6) +
+  xlab("Respondent's Age") +
+  ylab("Math Test Score") +
+  theme_bw() +
+  geom_smooth(method="loess")
+```
+2. faminc97 & mathraw97
+```{r}
+ggplot(good1, aes(x=faminc97, y=mathraw97)) +
+  geom_point(size=0.6) +
+  xlab("Respondent's Family Income") +
+  ylab("Math Test Score") +
+  theme_bw() +
+  geom_smooth(method="loess")
+```
+
+#### Check for Homoscedasticity
+```{r}
+plot(model1)  #enter to get to residual plot 
+```
+1. model residuals
+```{r}
+good.res<-resid(model1)
+```
+2. fitted values
+```{r}
+fitted.res<-fitted(model1)
+plot(fitted.res,good.res)
+abline(0, 0, lty=2, col="grey") 
+lines(lowess(good.res ~ fitted.res), col="red")
+```
+
+#### Check for Normality
+1. AGE97
+```{r}
+#probability plots
+hist(AGE97, freq=FALSE)
+lines(density(na.omit(AGE97)))
+#quantile-quantile plots
+qqnorm(AGE97)
+qqline(AGE97,col="red")
+```
+2. faminc97
+```{r}
+#probability plots
+hist(faminc97,freq=FALSE)
+lines(density(faminc97))
+#quantile-quantile plots
+qqnorm(faminc97)
+qqline(faminc97,col="red")
+```
+3. Residuals
+```{r}
+hist(good.res,10)
+boxplot(good.res,main="Boxplot of residuals") 
+```
+
+#### Check for Omitted Relevant Variables
+*Using Added Variable Plots*
+```{r model}
+good2 <- good[c("mathraw97",
+                "AGE97",
+                "faminc97",
+                "bthwht",
+                "WICpreg",
+                "HOME97")]
+# mathraw97
+model_math <- lm(mathraw97 ~ AGE97+faminc97+bthwht+WICpreg, data=good2)
+# HOME97
+model_home <- lm(HOME97 ~ AGE97+faminc97+bthwht+WICpreg, data=good2)
+```
+Compare plotted residuals.
+```{r}
+plot(density(resid(model_math)))
+plot(density(resid(model_home)))
+qqnorm(resid(model_math))
+qqline(resid(model_math), col="red")
+qqnorm(resid(model_home))
+qqline(resid(model_home), col="red")
+
+plot(model_home$residuals, model_math$residuals)
+abline(lm(model_math$residuals ~ model_home$residuals), col="red")
+lines(lowess(model_math$residuals ~ model_home$residuals), col="blue")
+```
+
+### Data Transformation
+1. Centering AGE97
+```{r}
+#Create a new centered AGE97 variable.
+good2$AGE97c <- good2$AGE97-mean(good2$AGE97)
+#Create a new centered AGE97 squared variable
+good2$AGE97c2 <- (good2$AGE97c**2)
+```
+2. Log-Transform faminc97
+```{r}
+good2$logfaminc <- ifelse(good2$faminc97 <= 1, 0, 
+                          ifelse(good2$faminc97 > 1, log(good2$faminc97), NA))
+```
+
+Create a new model after transformation.
+```{r model2}
+model2 <- lm(mathraw97 ~ AGE97c+AGE97c2+logfaminc+bthwht+WICpreg+HOME97, data=good2)
+```
+
+Extract the model fitted values and residuals.
+```{r}
+pred1 <- as.data.frame(model2$fitted.values)
+pred1$residuals <- (model2$residuals)
+```
+
+Produce a scatter plot of residuals against IVs.
+```{r}
+plot(good2$logfaminc, pred1$residuals)
+abline(lm(pred1$residuals ~ good2$logfaminc), col="red")  
+lines(lowess(good2$logfaminc, pred1$residuals), col="blue")
+
+plot(good2$HOME97, pred1$residuals)
+abline(lm(pred1$residuals~good2$HOME97), col="red")  
+lines(lowess(good2$HOME97, pred1$residuals), col="blue")
+
+summary(model2)
+```
+
+### Outlier Examination
+```{r model3}
+good3 <- good
+
+good3$AGE97c <- good3$AGE97-mean(good3$AGE97)
+good3$AGE97c2 <- (good3$AGE97c**2)
+good3$logfaminc <- ifelse(good3$faminc97 <= 1, 0, 
+                          ifelse(good3$faminc97 > 1, log(good3$faminc97), NA))
+
+model3 <- lm(mathraw97 ~ AGE97c+AGE97c2+logfaminc+bthwht+WICpreg+HOME97, data=good3)
+```
+
+Create a new data frame for outlier information.
+```{r}
+outliers <- good3[,c("CHID",
+                     "mathraw97",
+                     "AGE97c",
+                     "AGE97c2",
+                     "logfaminc",
+                     "bthwht",
+                     "WICpreg",
+                     "HOME97")]
+outliers$r <- rstudent(model3)
+outliers$lev <- hatvalues(model3)
+outliers$cd <- cooks.distance(model3)
+outliers$dffit <- dffits(model3)
+```
+
+Create a separate data frame with the dfbetas.
+```{r}
+dfbetaR <- dfbetas(model3)
+```
+Check the order of the variable names.
+```{r}
+colnames(dfbetaR)
+```
+Assign new variable names.
+```{r}
+colnames(dfbetaR) <- c("int_dfb","agec_dfb","agec2_dfb",
+                       "income_dfb","bthwht_dfb",
+                       "wic_dfb","home_dfb")
+outliers<-cbind(outliers,dfbetaR)
+head(outliers)
+```
+
+1. Discrepency
+```{r}
+#abs(standardized resid) > 2 (or 3)
+plot(outliers$r, 
+     xlab="Index",
+     ylab="studentized residuals",
+     pch=19)
+#Add fit lines.
+abline(lm(r~CHID, data=outliers), col="red")
+abline(h=2, col="blue")
+abline(h=-2, col="blue")
+abline(h=3, col="green")
+abline(h=-3, col="green")
+
+rstudent1 <- subset(outliers,abs(r)>3)
+View(rstudent1)
+```
+
+2. Leverage
+```{r}
+#leverage > (2k+2)/N 
+plot(outliers$lev, 
+     xlab="Index",
+     ylab="leverage",
+     pch=19)
+#Add fit lines.
+abline(lm(lev~CHID, data=outliers), col="red")
+abline(h=0.007, col="blue")
+abline(h=0.01, col="green")
+
+leverage1 <- subset(outliers,lev> .01)
+View(leverage1)
+```
+
+3. Influence (Cook's D)
+*Cook's D > 4/N* 
+```{r model4}
+model4 <- lm(mathraw97 ~ AGE97c+AGE97c2+logfaminc+bthwht+WICpreg+HOME97, data=subset(outliers, cd<(4/2042)))
+summary(model4)
+```
+
+Maybe our critical cooks.d value of 4/2042 is too strict.
+```{r}
+large_cd <- subset(outliers, cd >(4/2042))
+```
+
+Next, produce a histogram and print the sample quantiles of our Cook's D outlier measure to the console
+```{r}
+library(Hmisc)
+describe(large_cd$cd)
+hist(large_cd$cd)
+quantile(large_cd$cd, probs = seq(0, 1, 0.05))
+```
+
+Take a closer look at these observations
+```{r}
+large_cd2<-subset(outliers, cd > 0.007008524)
+#examine observations in this object
+View(large_cd2)
+```
+
+### Adjusted Model
+```{r model5}
+outliers2<-subset(outliers, cd < 0.007008524)
+
+#Now you can compare the results produced from our model1 model with the results
+#produced with our new dataset.
+model5 <- lm(mathraw97 ~ AGE97c+AGE97c2+logfaminc+bthwht+WICpreg+HOME97, data=outliers2)
+
+summary(model5)
+
+detach(good)
+```
