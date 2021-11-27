@@ -23,7 +23,7 @@
 ---
 
 ### R Projects
-#### WIC program (incomplete)
+#### Evaluation Study on WIC Program and Learning Capability
 
 [View full codebook here](https://sallyxu0106.github.io/html/r_project_1.html)
 
