@@ -25,7 +25,7 @@
 ### R Projects
 #### Evaluation Study on WIC Program and Learning Capability
 
-[View full codebook here](https://sallyxu0106.github.io/html/r_project_1.html)
+[View full codebook here](https://sallyxu0106.github.io/rcodes/r_project_1.html)
 
 [View complete report here](https://sallyxu0106.github.io/pdf/WIC_evaluation_study.pdf)
 <img src="images/r_project_1.png?raw=true"/>
