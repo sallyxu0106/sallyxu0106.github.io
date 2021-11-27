@@ -25,10 +25,10 @@
 ### R Projects
 #### WIC program (incomplete)
 
-[View full codebook here]()
+[View full codebook here](https://sallyxu0106.github.io/html/r_project_1.html)
 
-[View complete report here]()
-<>
+[View complete report here](https://sallyxu0106.github.io/pdf/WIC_evaluation_study.pdf)
+<img src="images/r_project_1.png?raw=true"/>
 
 
 ---
