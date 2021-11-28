@@ -12,11 +12,9 @@
 [View deliverable here](https://sallyxu0106.github.io/images/python_project_1_infographic.jpg)
 <img src="images/python_project_1.png?raw=true"/>
 
-#### II. Credit Score Modelling (incomplete)
+#### II. Applications of Machine Learning Method to Credit Risk Modelling
 
-[View full codebook here]()
-
-[View complete report here]()
+[View complete report here (include codes)](https://colab.research.google.com/drive/1VoClagMeHcsEnQDlkOzQw_SMZZIdH0sN?usp=sharing)
 <>
 
 
