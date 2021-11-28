@@ -14,7 +14,7 @@
 
 #### II. Applications of Machine Learning Method to Credit Risk Modelling
 
-[View complete report here (include codes)](https://colab.research.google.com/drive/1VoClagMeHcsEnQDlkOzQw_SMZZIdH0sN?usp=sharing)
+[View complete report here (including codes)](https://colab.research.google.com/drive/1VoClagMeHcsEnQDlkOzQw_SMZZIdH0sN?usp=sharing)
 <img src="images/python_project_2.png?raw=true"/>
 
 
