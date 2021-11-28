@@ -3,7 +3,7 @@
 ---
 
 ### Python Projects
-#### I.Education and Employment in North and South Dakota
+#### I. Education and Employment in North and South Dakota
 
 [View full codebook here](https://colab.research.google.com/drive/1BvZ8xSWt_Q2aOr8qw_fBn3Cnp-LNrMdB?usp=sharing)
 
@@ -12,7 +12,7 @@
 [View deliverable here](https://sallyxu0106.github.io/images/python_project_1_infographic.jpg)
 <img src="images/python_project_1.png?raw=true"/>
 
-#### II. Credit Socre Modelling (incomplete)
+#### II. Credit Score Modelling (incomplete)
 
 [View full codebook here]()
 
