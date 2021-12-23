@@ -17,6 +17,12 @@
 [View complete report here (including codes)](https://colab.research.google.com/drive/1VoClagMeHcsEnQDlkOzQw_SMZZIdH0sN?usp=sharing)
 <img src="images/python_project_2.png?raw=true"/>
 
+#### III. Sentiment Prediction and Topic Modeling on Financial News Data
+
+[View full codebook here](https://colab.research.google.com/drive/1xYSUn_YHzDAEbE7tV9HYz2fRlWQIR2p1?usp=sharing)
+
+[View complete report here](https://sallyxu0106.github.io/pdf/sentiment_analysis_and_topic_modeling.pdf)
+<img src="images/python_project_3.png?raw=true"/>
 
 ---
 
