@@ -37,7 +37,7 @@
 
 ---
 
-### Arcgis Projects
+### ArcGIS Projects
 
 <img src="images/arcgis_projects_1.png?raw=true"/>
 
