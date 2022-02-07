@@ -34,7 +34,6 @@
 [View complete report here](https://sallyxu0106.github.io/pdf/WIC_evaluation_study.pdf)
 <img src="images/r_project_1.png?raw=true"/>
 
-
 ---
 
 ### ArcGIS Projects
@@ -45,6 +44,12 @@
 
 [View storymap here]()
 <>
+
+---
+
+### Tableau
+
+[View my Tableau Profile](https://public.tableau.com/app/profile/sally.xu2690)
 
 
 ---
