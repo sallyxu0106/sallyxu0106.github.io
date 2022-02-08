@@ -40,17 +40,12 @@
 
 <img src="images/arcgis_projects_1.png?raw=true"/>
 
-#### ACA (incomplete)
-
-[View storymap here]()
-<>
-
 ---
 
 ### Tableau
 
 [View my Tableau Profile](https://public.tableau.com/app/profile/sally.xu2690)
-
+<img src="images/tableau_1.png?raw=true"/>
 
 ---
 <p style="font-size:11px">Page template forked from <a href="https://github.com/evanca/quick-portfolio">evanca</a></p>
